@@ -1,0 +1,15 @@
+BasedOnStyle:              Google
+Language:                  Cpp
+
+
+MaxEmptyLinesToKeep:       1
+ColumnLimit: 200
+IndentWidth: 4
+
+
+#不允許短函式放一行
+AllowShortFunctionsOnASingleLine: None
+
+
+#不允許短 if 放在一行
+AllowShortIfStatementsOnASingleLine:    false
