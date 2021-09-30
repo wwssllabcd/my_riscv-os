@@ -21,7 +21,7 @@ void uart_putc(char ch) {
     m_uart->thr = ch;
 }
 
-void printk(char *s) {
+void uart_put_s(char *s) {
 	while (*s) {
         uart_putc(*s++);
     }
@@ -72,7 +72,7 @@ int vsprintf(char *buf, const char *fmt, va_list args)
     return 0;
 }
 
-int printk_new(const char *fmt, ...)
+int printk(const char *fmt, ...)
 {
 	int i;
 	char buf[512];
@@ -83,7 +83,7 @@ int printk_new(const char *fmt, ...)
     vsprintf(buf, fmt, vl);
     va_end(vl);
 
-    printk(buf);
+    uart_put_s(buf);
 
 	return i;
 }

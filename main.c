@@ -2,8 +2,10 @@
 #include "timer.h"
 #include "trap.h"
 
-vu32 m_temp_storage[128];
 
+#define MSTATUS_MIE (1 << 3)  // machine-mode interrupt enable.
+
+vu32 m_temp_storage[128];
 
 void mscratch_init() {
     printk("mscratch_init\n");
@@ -38,7 +40,7 @@ void mscratch_init() {
 // }
 
 void global_interrupt_enable() {
-#define MSTATUS_MIE (1 << 3)  // machine-mode interrupt enable.
+
 
 	printk("global_interrupt_enable\n");
 
@@ -48,8 +50,7 @@ void global_interrupt_enable() {
 
 void os_main(void) {
     printk("os_main start\n");
-
-    printk_new("A=%X, B=%X, C=%X\n", 0x87654321, 0x12345678, 12345678);
+    printk("A=%X, B=%X, C=%X\n", 0x87654321, 0x12345678, 12345678);
 
     mscratch_init();
 
