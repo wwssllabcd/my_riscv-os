@@ -133,20 +133,6 @@ atomic_swap:
 # the trap vector base address must always be aligned on a 4-byte boundary
 .align 4
 trap_vector:
-	# save context(registers).
-	csrrw	t6, mscratch, t6	# swap t6 and mscratch
-        reg_save t6
-	csrw	mscratch, t6
-	# call the C trap handler in trap.c
-	csrr	a0, mepc
-	csrr	a1, mcause
 	call	trap_handler
-
-	# trap_handler will return the return address via a0.
-	csrw	mepc, a0
-
-	# load context(registers).
-	csrr	t6, mscratch
-	reg_load t6
 	mret
 

@@ -2,7 +2,7 @@ CC = riscv64-unknown-elf-gcc
 CFLAGS = -nostdlib -fno-builtin -mcmodel=medany -march=rv32ima -mabi=ilp32 -g
 
 QEMU = qemu-system-riscv32
-QFLAGS = -nographic -smp 4 -machine virt -bios none
+QFLAGS = -nographic -smp 4 -machine virt -bios none -s -S
 
 OBJDUMP = riscv64-unknown-elf-objdump
 

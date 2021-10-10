@@ -48,10 +48,28 @@ void global_interrupt_enable() {
     w_mstatus(r_mstatus() | MSTATUS_MIE);
 }
 
+reg_t r_sp(void) {
+    reg_t x;
+    asm volatile("mv %0, sp" : "=r"(x));
+    return x;
+}
+
 void os_start(void) {
-    printk("os_start start\n");
+    printk("os_start \n");
+    u32 cnt =0;
+
+   
+    
+
     while (1) {
-        ;
+        u64 a = RAM_U64(CLINT_MTIME);
+
+        reg_t b = r_sp();
+        
+
+        printk("cnt=%X, timer=%X, sp=%X \n", cnt, a, b);
+
+        cnt++;
     }
 }
 

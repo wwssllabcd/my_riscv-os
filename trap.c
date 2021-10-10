@@ -4,10 +4,10 @@
 
 extern void trap_vector();
 
-reg_t trap_handler(reg_t epc, reg_t cause) {
-    reg_t return_pc = epc;
+void trap_handler() {
 
-    return return_pc;
+    u32 a = 
+    printk("trap_handler\n");
 }
 
 void trap_init() {
