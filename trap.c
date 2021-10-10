@@ -7,8 +7,6 @@ extern void trap_vector();
 reg_t trap_handler(reg_t epc, reg_t cause) {
     reg_t return_pc = epc;
 
-
-
     return return_pc;
 }
 

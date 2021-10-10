@@ -48,9 +48,16 @@ void global_interrupt_enable() {
     w_mstatus(r_mstatus() | MSTATUS_MIE);
 }
 
+void os_start(void) {
+    printk("os_start start\n");
+    while (1) {
+        ;
+    }
+}
+
 void os_main(void) {
     printk("os_main start\n");
-    printk("A=%X, B=%X, C=%X\n", 0x87654321, 0x12345678, 12345678);
+    printk("A=%X, B=%X, C=%X \n", 0x87654321, 0x12345678, 12345678);
 
     mscratch_init();
 
@@ -60,6 +67,5 @@ void os_main(void) {
 
     global_interrupt_enable();
 
-    while (1) {
-    }
+    os_start();
 }
