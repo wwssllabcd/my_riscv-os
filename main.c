@@ -67,6 +67,7 @@ void os_start(void) {
     u32 cnt =0;
     while (1) {
         u64 a = RAM_U64(CLINT_MTIME);
+        u64 tcmp = RAM_U64(CLINT_MTIMECMP);
 
         u32 sp = r_sp();
 
@@ -76,7 +77,7 @@ void os_start(void) {
         
         printk("pc=%X\n", pc);
 
-        printk("cnt=%X, timer=%lX, pc=%X \n", cnt, a, pc);
+        printk("cnt=%X, timer=%lX, tcmp=%X \n", cnt, a, tcmp);
 
         cnt++;
     }

@@ -19,7 +19,9 @@ void set_mtimecmp(u64 val) {
 
 void set_mtime(u64 val) {
     printk("set_mtime\n");
-    RAM_U64(CLINT_MTIME) = val;
+
+    //we can set mtime 
+    //RAM_U64(CLINT_MTIME) = val;
 }
 
 void timer_interrupt_enable() {
@@ -31,7 +33,7 @@ void timer_init() {
     printk("timer_init\n");
 
     // ask the CLINT for a timer interrupt.
-    u32 interval = 10000000;  // cycles; about 1 second in qemu.
+    u32 interval = 0x800000;
     set_mtimecmp(interval);
     set_mtime(0);
     timer_interrupt_enable();
