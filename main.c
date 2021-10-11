@@ -54,20 +54,29 @@ reg_t r_sp(void) {
     return x;
 }
 
+reg_t r_pc(void) {
+    reg_t x;
+    asm volatile("auipc %0, 0" : "=r"(x));
+    return x;
+}
+
+
+
 void os_start(void) {
-    printk("os_start \n");
+    printk("os_start\n");
     u32 cnt =0;
-
-   
-    
-
     while (1) {
         u64 a = RAM_U64(CLINT_MTIME);
 
-        reg_t b = r_sp();
-        
+        u32 sp = r_sp();
 
-        printk("cnt=%X, timer=%X, sp=%X \n", cnt, a, b);
+        u32 pc;
+
+        GET_PC(pc);
+        
+        printk("pc=%X\n", pc);
+
+        printk("cnt=%X, timer=%lX, pc=%X \n", cnt, a, pc);
 
         cnt++;
     }

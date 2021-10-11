@@ -1,6 +1,12 @@
 #include <stdarg.h>
 #include "head.h"
 
+
+typedef struct {
+    u32 array;
+}DebugArray;
+GEN_OTHER_TYPE(DebugArray);
+
 typedef struct {
     u8 thr;
     u8 :8;
@@ -56,11 +62,15 @@ int vsprintf(char *buf, const char *fmt, va_list args)
         fmt++;
 
         switch (*fmt) {
+        case 'l':
+            fmt++;
+            num = va_arg(args, u32);
+            p = i2a(num, 16, p);
         case 'x':
         case 'X':
             num = va_arg(args, u32);
             p = i2a(num, 16, p);
-            break;
+            continue;
         default:
             break;
         }
